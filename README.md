@@ -1,248 +1,711 @@
-TRACK_ID=PS03
-# RetailIQ — Retail Sales and Inventory Copilot
+# 🛍️ RetailIQ — AI-Powered Sales & Inventory Copilot 🚀
 
-RetailIQ is an enterprise-grade retail decision-support copilot and executive analytics platform built for store managers operating multi-location retail networks. It combines deterministic Python calculations with Google Gemini AI for grounded natural language reasoning, explanation, and local policy retrieval (RAG).
+> ### *Turn retail data into intelligent decisions.* 🤖📊
 
-The system enforces a **Zero Hallucination Guarantee**: all financial metrics, Average Daily Sales (ADS), stock coverage days, and alert conditions are computed authoritatively by Python using Pandas and NumPy. Gemini is utilized solely to explain, contextualize, and reason over verified evidence packages.
+**RetailIQ** is an AI-powered retail intelligence platform designed to help businesses **monitor sales, manage inventory, understand business performance, detect critical situations, and make smarter decisions using AI.**
 
----
-
-## 1. Problem Being Solved
-
-Store managers running multi-store retail operations face fragmented data across point-of-sale systems and stockrooms. Critical inventory risks often go unnoticed until it is too late:
-- **Stock-Outs**: Fast-moving items run out of stock before replacement purchase orders can arrive, resulting in lost revenue and customer churn.
-- **Overstock**: Excess merchandise accumulates, tying up working capital and incurring holding/markdown costs.
-- **Velocity Anomalies**: Sudden sales spikes (which risk immediate depletion) and severe sales drops (which indicate on-shelf merchandising or pricing failures) remain hidden in raw transaction logs.
-- **Hallucination in AI**: Standard LLM chatbots invent numbers and extrapolate speculative sales forecasts that mislead managers.
-
-RetailIQ solves this by pairing an authoritative deterministic analytics and rule engine with a grounded Generative AI Copilot that always cites verified system numbers and operational policy guidelines.
+The platform combines an interactive **Sales & Inventory Dashboard**, **AI Copilot**, **RAG-powered business knowledge**, **Gemini intelligence**, and a **rule-based decision engine** to transform raw retail data into actionable insights.
 
 ---
 
-## 2. Key Features
+## 🌟 Why RetailIQ?
 
-- **Executive Analytics Dashboard**:
-  - Top KPI cards: Total Revenue, Units Sold, Current Inventory, and Products Needing Attention.
-  - Interactive Chart.js visualizations: 30-day Daily Sales Revenue trend and Category Revenue Share donut.
-  - Multi-Store Filter: Seamlessly view consolidated enterprise performance or drill down to individual stores (*Downtown Flagship*, *Westside Mall*, *Suburban Center*, *Metro Express*).
-- **Deterministic Alert & Rule Engine**:
-  - **Rule 1 — Likely Stock-Out**: Identifies products whose forward days of stock is below the 5.0-day threshold or less than supplier lead time.
-  - **Rule 2 — Overstock**: Identifies inventory holding over 60 days of forward supply or more than 3x the reorder point.
-  - **Rule 3 — Slow Moving**: Flags products holding inventory but selling fewer than 0.20 units/day over a 30-day baseline.
-  - **Rule 4 — Sales Spike**: Flags sudden demand surges where 7-day velocity is $\ge 2.0\times$ the 30-day baseline.
-  - **Rule 5 — Sales Drop**: Flags demand drops where 7-day velocity is $\le 0.40\times$ the baseline.
-  - Every alert contains product, store, exact numerical values, rule triggered, reason, evidence, assumptions, and actionable recommendation.
-- **Grounded AI Copilot**:
-  - Natural language interface directly on the dashboard with quick suggested question chips.
-  - Retrieves authoritative structured metrics and relevant policies before responding.
-  - Answers in a standardized structure: **SUMMARY**, **VERIFIED EVIDENCE**, **RULE / POLICY CITED**, **ANALYSIS**, **RECOMMENDATION**, and **ASSUMPTIONS & DATA SOURCES**.
-  - Includes an interactive **Inspect Evidence JSON** drawer for auditing underlying calculations.
-- **Strict Hallucination Guardrails**:
-  - If a user asks questions beyond the 90-day historical data (e.g. *"What will our sales be exactly 6 months from now?"* or uncataloged items like *"iPhone 16"*), the copilot transparently states: *"I don't have enough data to answer that."*
-- **High-Resilience Dual Execution**:
-  - Powered by Google Gemini (`gemini-1.5-flash` or `gemini-2.5-flash`).
-  - If `GEMINI_API_KEY` is not provided or the network is offline, the copilot automatically falls back to an authoritative deterministic synthesis engine, guaranteeing that the application never crashes during judging.
+Retail businesses often deal with:
+
+* 📦 Overstocking and understocking
+* ⚠️ Low-stock situations
+* 📉 Declining product performance
+* 📈 Changing sales trends
+* 🔍 Difficulty understanding large amounts of sales data
+* 🧮 Manual inventory analysis
+* ⏰ Slow business decision-making
+
+Traditional dashboards mainly show numbers.
+
+**RetailIQ goes one step further — it helps explain those numbers and provides intelligent, actionable insights.**
 
 ---
 
-## 3. Architecture & Data Flow
+# 🎯 Problem Statement
 
+Retail managers need to continuously monitor:
+
+* Product inventory
+* Sales performance
+* Stock availability
+* Revenue trends
+* Product-level performance
+* Business alerts
+* Operational decisions
+
+Manually analyzing all this information can be time-consuming and error-prone.
+
+RetailIQ provides a centralized intelligence layer that combines **analytics + business rules + retrieval-augmented knowledge + generative AI** to support faster retail decision-making.
+
+---
+
+# 💡 Our Solution
+
+RetailIQ acts as an **AI Retail Command Center**.
+
+```text
+                    RETAIL DATA
+                         │
+                         ▼
+              📊 Data Processing Layer
+                         │
+              ┌──────────┴──────────┐
+              ▼                     ▼
+        📈 Sales Analytics      📦 Inventory
+              │                     │
+              └──────────┬──────────┘
+                         ▼
+                 ⚙️ Rule Engine
+                         │
+                         ▼
+                  🚨 Alerts & Signals
+                         │
+              ┌──────────┴──────────┐
+              ▼                     ▼
+          🧠 RAG Layer         🤖 Gemini AI
+              │                     │
+              └──────────┬──────────┘
+                         ▼
+                  💬 AI COPILOT
+                         │
+                         ▼
+              🎯 Actionable Insights
 ```
-[Store Manager / Judge]
-        │
-        ▼
-[Web Dashboard & AI Chat UI]  (localhost:8000)
-        │
-        ▼
-[Flask REST API Server (app.py)]
-        │
-        ├──► [Authoritative Analytics Engine (src/analytics.py)]
-        │         ├── products.csv (Catalog across 5 categories)
-        │         ├── stores.csv (4 store locations)
-        │         ├── inventory.csv (Stock balances, lead times, safety stocks)
-        │         └── sales.csv (90 days of daily POS transactions)
-        │
-        ├──► [Alert & Rule Engine (src/rules.py)]
-        │         └── Evaluates Rules 1 to 5 deterministically
-        │
-        ├──► [Local Policy RAG (src/retrieval.py)]
-        │         └── docs/retail_rules.md (Embeddings / TF-IDF similarity)
-        │
-        └──► [Grounded Copilot (src/gemini.py)]
-                  ├── Query Understanding & Entity Matching
-                  ├── Guardrail Boundary Verification
-                  ├── Evidence Package Assembly
-                  └── Grounded Response Generation (Gemini or Fallback)
+
+---
+
+# ✨ Key Features
+
+## 📊 Intelligent Retail Dashboard
+
+RetailIQ provides a centralized dashboard for monitoring important business metrics.
+
+The dashboard brings together:
+
+* 💰 Sales performance
+* 📦 Inventory status
+* 📈 Sales trends
+* 🛍️ Product performance
+* 🚨 Business alerts
+* 📊 Visual analytics
+* 🧠 AI-generated insights
+
+This allows users to understand the overall health of their retail business from a single interface.
+
+---
+
+## 📦 Product & Inventory Management
+
+RetailIQ allows users to manage products directly from the dashboard.
+
+### Product operations include:
+
+* ➕ Add new products
+* ✏️ Update product information
+* 🗑️ Remove products
+* 🔍 View product details
+* 📦 Monitor available stock
+* ⚠️ Identify low-stock products
+* 📊 Track product-level performance
+
+This makes the dashboard more than just an analytics screen — it also acts as an operational inventory management interface.
+
+---
+
+## 💰 Sales Analytics
+
+RetailIQ analyzes sales information to provide a clear understanding of business performance.
+
+Users can monitor:
+
+* 💵 Revenue
+* 🛒 Sales activity
+* 📈 Sales trends
+* 📦 Product performance
+* 📊 Inventory-related metrics
+* 🔎 Product-level insights
+
+Visual charts make it easier to identify patterns and understand changes in retail performance.
+
+---
+
+## 📈 Interactive Business Charts
+
+The dashboard presents retail data through visual analytics.
+
+Charts and graphs help users understand:
+
+* Sales movement
+* Revenue patterns
+* Product performance
+* Inventory conditions
+* Business trends
+
+Instead of manually analyzing raw data, users can identify important patterns visually.
+
+---
+
+# 🚨 Smart Alerts
+
+RetailIQ continuously evaluates important business conditions using predefined rules.
+
+The system can identify situations such as:
+
+* ⚠️ Low inventory
+* 📦 Products requiring attention
+* 📉 Poor-performing products
+* 📈 Important sales changes
+* 🚨 Business conditions requiring action
+
+These alerts help users focus on the most important problems instead of manually checking every product.
+
+---
+
+# ⚙️ Rule-Based Intelligence Engine
+
+RetailIQ includes a **business rule engine** that evaluates retail conditions and generates meaningful signals.
+
+The rule engine acts as a deterministic intelligence layer before AI reasoning.
+
+```text
+Retail Data
+    │
+    ▼
+Business Rules
+    │
+    ├── Stock Condition
+    ├── Sales Condition
+    ├── Product Condition
+    └── Business Thresholds
+    │
+    ▼
+Alerts / Signals
+    │
+    ▼
+AI Copilot
+```
+
+This combination allows RetailIQ to use both:
+
+**Deterministic business logic + Generative AI**
+
+rather than depending entirely on an LLM.
+
+---
+
+# 🤖 AI Retail Copilot
+
+The **RetailIQ Copilot** is the conversational intelligence layer of the platform.
+
+Instead of navigating through multiple dashboards, users can ask questions about their retail business using natural language.
+
+### Example questions:
+
+```text
+Which products are running low on stock?
+```
+
+```text
+What are my best-performing products?
+```
+
+```text
+Which products need attention?
+```
+
+```text
+Why are my sales declining?
+```
+
+```text
+What should I focus on today?
+```
+
+The Copilot interprets the user's question and provides a business-focused response.
+
+---
+
+# 🧠 Gemini-Powered Intelligence
+
+RetailIQ uses **Google Gemini** to provide generative AI capabilities.
+
+Gemini can help transform structured retail information into human-readable business insights.
+
+Instead of simply returning:
+
+```text
+Stock: 8
+Sales: 42
+Revenue: ₹12,500
+```
+
+the Copilot can turn the information into an understandable explanation and recommendation.
+
+```text
+⚠️ Product X requires attention.
+
+Current stock is low compared with its recent sales activity.
+Consider reviewing its inventory level to avoid a potential
+stock availability issue.
+```
+
+This makes retail analytics more accessible to non-technical users.
+
+---
+
+# 📚 RAG — Retrieval-Augmented Generation
+
+RetailIQ incorporates a **Retrieval-Augmented Generation (RAG)** approach to provide the AI Copilot with relevant business context.
+
+### RAG Pipeline
+
+```text
+User Question
+      │
+      ▼
+Query Understanding
+      │
+      ▼
+Retrieve Relevant Context
+      │
+      ▼
+Retail / Business Knowledge
+      │
+      ▼
+Gemini
+      │
+      ▼
+Context-Aware Response
+```
+
+RAG helps ground the Copilot's responses in relevant information rather than relying only on the model's general knowledge.
+
+---
+
+# 🔄 AI Decision Flow
+
+RetailIQ combines multiple intelligence layers:
+
+```text
+                 USER
+                  │
+                  ▼
+             💬 COPILOT
+                  │
+                  ▼
+          Query Understanding
+                  │
+        ┌─────────┴─────────┐
+        ▼                   ▼
+   📚 RAG Context      📊 Retail Data
+        │                   │
+        └─────────┬─────────┘
+                  ▼
+             🤖 GEMINI
+                  │
+                  ▼
+          Business Reasoning
+                  │
+                  ▼
+        🎯 Actionable Insight
 ```
 
 ---
 
-## 4. Technology Stack
+# 🧩 Multi-Layer Intelligence
 
-- **Backend**: Python 3.11+ / Python 3.13
-- **Web Framework**: Flask
-- **Data Processing**: Pandas, NumPy
-- **Generative AI & LLM**: Google Gemini API (`gemini-1.5-flash` / `gemini-2.5-flash`)
-- **Embeddings & Policy Retrieval**: Gemini Embeddings (`models/gemini-embedding-001`) with instant local TF-IDF vector fallback (100% local, zero external vector DBs)
-- **Frontend**: Responsive HTML5, Modern Dark-Slate CSS3, Vanilla ES6 JavaScript, Chart.js
+One of RetailIQ's important design principles is that AI is not used alone.
 
----
+The platform combines:
 
-## 5. Synthetic Retail Dataset
+| Intelligence Layer | Purpose                               |
+| ------------------ | ------------------------------------- |
+| 📊 Analytics       | Understand business performance       |
+| ⚙️ Rule Engine     | Detect predefined business conditions |
+| 🚨 Alerts          | Highlight important situations        |
+| 📚 RAG             | Provide relevant business context     |
+| 🤖 Gemini          | Generate natural-language reasoning   |
+| 💬 Copilot         | Allow natural-language interaction    |
 
-The system includes realistic synthetic retail data in `data/`:
-- `data/products.csv`: 21 products across Electronics, Grocery, Home, Fashion, and Personal Care (includes *Laptop Pro*, *Wireless Mouse*, *Artisan Sourdough*, *Ceramic Cookware Set*, *Electric Toothbrush Pro*, *Vintage Leather Jacket*, etc.).
-- `data/stores.csv`: 4 retail branches:
-  - `S001`: Downtown Flagship (Financial District)
-  - `S002`: Westside Mall (Retail Plaza)
-  - `S003`: Suburban Center (North Suburbs)
-  - `S004`: Metro Express (Midtown Transit)
-- `data/inventory.csv`: 84 store-product inventory records specifying `current_stock`, `reorder_level`, `safety_stock`, and `unit_cost`.
-  - *Wireless Mouse at Downtown Flagship*: Configured with `current_stock=12`, `reorder_level=25`, `safety_stock=15`, 7-day ADS = 5.0 units/day $\rightarrow$ **Estimated Stock Coverage: 2.4 days** (Triggering Rule 1 Critical Stock-Out).
-- `data/sales.csv`: 7,560 daily transaction records spanning 90 days (from June to September 2026) totaling over $1.66M in revenue.
+This creates a more practical AI-assisted retail decision system.
 
 ---
 
-## 6. How Gemini & Deterministic Logic Are Separated
+# 🛍️ Product Management Workflow
 
-| Capability | Module Responsible | Methodology |
-| :--- | :--- | :--- |
-| **Sales Calculations** | `src/analytics.py` | Deterministic Pandas aggregations |
-| **Average Daily Sales (ADS)** | `src/analytics.py` | Rolling 7-day and 30-day velocity formulas |
-| **Stock Coverage Days** | `src/analytics.py` | $\text{Current Stock} / \text{ADS}$ |
-| **Alert Detection (Rules 1–5)** | `src/rules.py` | Deterministic threshold conditionals |
-| **Recommended Reorder Units** | `src/rules.py` | $(\text{Target Days} \times \text{ADS}) + \text{Safety Stock} - \text{Current Stock}$ |
-| **Evidence Assembly** | `src/gemini.py` | Python JSON dictionary packaging |
-| **Query Understanding** | `src/gemini.py` | Intent parsing & entity resolution |
-| **Policy Retrieval** | `src/retrieval.py` | Local RAG on `docs/retail_rules.md` |
-| **Natural Language Explanation** | `src/gemini.py` | Gemini 1.5 Flash grounded on verified evidence |
-| **Boundary Guardrail** | `src/gemini.py` | Explicit *"I don't have enough data to answer that."* |
+Users can manage products directly through the RetailIQ interface.
+
+```text
+             PRODUCT MANAGEMENT
+                    │
+        ┌───────────┼───────────┐
+        ▼           ▼           ▼
+      ➕ ADD       ✏️ UPDATE    🗑️ REMOVE
+        │           │           │
+        └───────────┼───────────┘
+                    ▼
+              📦 INVENTORY
+                    │
+                    ▼
+             📊 DASHBOARD
+                    │
+                    ▼
+              🧠 AI INSIGHTS
+```
+
+This allows the system to support both **operational actions and intelligent analysis**.
 
 ---
 
-## 7. How to Run the Application
+# 📊 Retail Intelligence Workflow
 
-### Step 1: Install Dependencies
+```text
+📦 Products
+     │
+     ▼
+🛒 Sales Data
+     │
+     ▼
+📊 Analytics
+     │
+     ▼
+⚙️ Business Rules
+     │
+     ├──────────────► 🚨 Alerts
+     │
+     ▼
+🧠 RAG Context
+     │
+     ▼
+🤖 Gemini
+     │
+     ▼
+💬 Retail Copilot
+     │
+     ▼
+🎯 Actionable Decisions
+```
+
+---
+
+# 🎯 Key Use Cases
+
+## 📦 Inventory Monitoring
+
+Monitor product stock levels and identify products that require attention.
+
+## ⚠️ Low-Stock Detection
+
+Identify products approaching critical inventory levels.
+
+## 📈 Sales Performance Analysis
+
+Understand product and overall sales performance through visual analytics.
+
+## 🔍 Product Analysis
+
+Analyze individual products and identify important performance signals.
+
+## 🚨 Business Alerts
+
+Highlight important inventory and sales conditions automatically.
+
+## 💬 Conversational Analytics
+
+Ask natural-language questions instead of manually searching through dashboards.
+
+## 🧠 AI-Powered Decision Support
+
+Use Gemini and contextual business information to generate understandable insights.
+
+## 📚 Context-Aware AI
+
+Use RAG to provide the Copilot with relevant retail context.
+
+## 🛠️ Direct Product Operations
+
+Add, update, and remove products directly from the application.
+
+---
+
+# 🏗️ System Architecture
+
+```text
+┌─────────────────────────────────────────────┐
+│              RETAILIQ UI                    │
+│                                             │
+│  📊 Dashboard   📦 Products   💬 Copilot   │
+└──────────────────────┬──────────────────────┘
+                       │
+                       ▼
+┌─────────────────────────────────────────────┐
+│          RETAIL INTELLIGENCE LAYER          │
+│                                             │
+│  📈 Sales Analytics                         │
+│  📦 Inventory Analysis                      │
+│  ⚙️ Business Rules                          │
+│  🚨 Alert Generation                        │
+└──────────────────────┬──────────────────────┘
+                       │
+                       ▼
+┌─────────────────────────────────────────────┐
+│                 AI LAYER                    │
+│                                             │
+│  📚 RAG  ──────────────► Context           │
+│                           │                 │
+│                           ▼                 │
+│                     🤖 Gemini               │
+│                           │                 │
+│                           ▼                 │
+│                     💬 Copilot              │
+└──────────────────────┬──────────────────────┘
+                       │
+                       ▼
+              🎯 BUSINESS INSIGHTS
+```
+
+---
+
+# 🛠️ Technology Stack
+
+## 🐍 Backend / Application Logic
+
+* Python
+* Application server
+* Retail data processing
+* Business rule processing
+
+## 🧠 Artificial Intelligence
+
+* Google Gemini
+* Generative AI
+* Retrieval-Augmented Generation (RAG)
+* AI-powered conversational Copilot
+
+## 📊 Data & Analytics
+
+* Retail sales data
+* Inventory data
+* Product information
+* Data analysis
+* Interactive visualizations
+
+## 🎨 Frontend / UI
+
+* HTML
+* CSS
+* JavaScript
+* Interactive dashboard components
+* Responsive retail interface
+
+---
+
+# 📂 Project Structure
+
+```text
+RetailIQ-AI-Powered-Sales-Inventory-Copilot/
+│
+├── 📁 data/
+│   └── Retail datasets
+│
+├── 📁 docs/
+│   └── Project documentation
+│
+├── 📁 src/
+│   └── Core application logic
+│
+├── 📁 static/
+│   └── Frontend assets
+│
+├── 📁 templates/
+│   └── Application templates
+│
+├── 📁 tests/
+│   └── Test files
+│
+├── 📄 app.py
+├── 📄 generate_data.py
+├── 📄 requirements.txt
+├── 📄 .gitignore
+└── 📄 README.md
+```
+
+---
+
+# 🚀 Getting Started
+
+## 1️⃣ Clone the Repository
+
+```bash
+git clone https://github.com/vishnupriyan34/RetailIQ-AI-Powered-Sales-Inventory-Copilot.git
+```
+
+## 2️⃣ Navigate to the Project
+
+```bash
+cd RetailIQ-AI-Powered-Sales-Inventory-Copilot
+```
+
+## 3️⃣ Create a Virtual Environment
+
+### Windows
+
+```bash
+python -m venv venv
+venv\Scripts\activate
+```
+
+### Linux / macOS
+
+```bash
+python3 -m venv venv
+source venv/bin/activate
+```
+
+## 4️⃣ Install Dependencies
+
 ```bash
 pip install -r requirements.txt
 ```
 
-### Step 2: (Optional) Set the Gemini API Key
-To enable live Gemini 1.5 Flash generation, set the environment variable:
+## 5️⃣ Configure Environment Variables
 
-**Windows (PowerShell):**
-```powershell
-$env:GEMINI_API_KEY="your-gemini-api-key-here"
+Create a `.env` file and add the required AI configuration.
+
+```env
+GEMINI_API_KEY=your_api_key_here
 ```
 
-**Windows (CMD):**
-```cmd
-set GEMINI_API_KEY=your-gemini-api-key-here
-```
+> ⚠️ Never commit your actual API key to GitHub.
 
-**Linux / macOS:**
-```bash
-export GEMINI_API_KEY="your-gemini-api-key-here"
-```
+## 6️⃣ Run the Application
 
-*(Note: If `GEMINI_API_KEY` is not set, RetailIQ will automatically run in Authoritative Grounded Synthesizer mode. The dashboard, analytics, alerts, and copilot remain 100% functional!)*
-
-### Step 3: Start the Application
 ```bash
 python app.py
 ```
 
-Open your browser at:
-**[http://localhost:8000](http://localhost:8000)**
-
-- Single terminal process.
-- No separate frontend build command required.
-- Starts in under 2 seconds.
+Then open the local application in your browser.
 
 ---
 
-## 8. Demo Walkthrough (2–3 Minutes)
+# 🔐 Environment Variables
 
-Use these 4 core demo questions (available as one-click chips in the Copilot UI):
+RetailIQ may require environment configuration for AI functionality.
 
-### Demo 1: "What products need attention today?"
-- **Manager Intent**: Immediate operational triage across all 4 stores.
-- **Copilot Output**: Shows prioritized critical stock-outs (Wireless Mouse at Downtown Flagship, Laptop Pro allocations), sales drops (Artisan Sourdough), and sales surges (Electric Toothbrush).
-- **Notice**: Cites exact numbers and rules from `docs/retail_rules.md`.
+| Variable         | Purpose                          |
+| ---------------- | -------------------------------- |
+| `GEMINI_API_KEY` | Google Gemini API authentication |
 
-### Demo 2: "Why is Wireless Mouse flagged?"
-- **Manager Intent**: Root-cause inquiry on a specific SKU.
-- **Copilot Output**:
-  - Current stock: **12 units**
-  - 7-Day Average Daily Sales: **5.0 units/day**
-  - Estimated Stock Coverage: **2.4 days**
-  - Reorder Level: **25 units** (Safety stock: 15 units)
-  - Lead Time: **4 days**
-  - **Reason**: 2.4 days of coverage is less than the 4-day lead time $\rightarrow$ stock-out is guaranteed before arrival. Recommends ordering 108 units.
-
-### Demo 3: "How did Laptop Pro perform this month?"
-- **Manager Intent**: Product monthly sales and inventory health review.
-- **Copilot Output**: Reports exact monthly revenue ($50,400.00, 42 units in September 2026), trailing 30-day revenue ($249,600.00), ADS, selling price ($1,200.00), and total units in stock across stores.
-
-### Demo 4: "What should I reorder?"
-- **Manager Intent**: Purchasing and replenishment recommendations.
-- **Copilot Output**: Tabulates prioritized items with calculated order quantities based on supplier lead times and safety stock targets.
-
-### Demo 5 (Edge / Guardrail Case): "What will our sales be exactly 6 months from now?"
-- **Manager Intent**: Test hallucination prevention.
-- **Copilot Output**: Clearly responds: *"I don't have enough data to answer that."* Explains that available historical data covers 90 days and does not support speculative long-range forecasts without macro indicators.
+For security, store credentials in `.env` and keep `.env` excluded through `.gitignore`.
 
 ---
 
-## 9. Running Automated Tests
+# 🧪 Testing
 
-Run the comprehensive test suite validating all normal and difficult cases:
-```bash
-python tests/test_copilot.py
-```
-Expected output:
+The repository includes a dedicated test directory:
+
 ```text
-Ran 17 tests in 1.44s
-OK
+tests/
 ```
+
+Tests can be executed according to the project's configured test setup.
 
 ---
 
-## 10. Repository Structure
+# 🌟 What Makes RetailIQ Different?
 
+RetailIQ is not designed as only a traditional sales dashboard.
+
+It combines:
+
+```text
+📊 Analytics
+      +
+📦 Inventory Management
+      +
+⚙️ Rule-Based Intelligence
+      +
+🚨 Smart Alerts
+      +
+📚 RAG
+      +
+🤖 Gemini
+      +
+💬 AI Copilot
+      ↓
+🎯 AI-Powered Retail Decision Support
 ```
-RetailIQ/
-├── app.py                     # Main Flask server entry point (port 8000)
-├── generate_data.py           # Reproducible synthetic retail data generator
-├── requirements.txt           # Python dependencies
-├── README.md                  # Documentation (first line TRACK_ID=PS03)
-│
-├── data/
-│   ├── products.csv           # 21 products across 5 retail categories
-│   ├── stores.csv             # 4 store branches
-│   ├── sales.csv              # 7,560 daily POS transaction records (90 days)
-│   ├── inventory.csv          # 84 inventory levels, reorder points, lead times
-│   └── policy_embeddings.json # Local embeddings cache
-│
-├── src/
-│   ├── analytics.py           # Authoritative deterministic metrics (Pandas)
-│   ├── rules.py               # Deterministic rule engine (Rules 1 to 5)
-│   ├── retrieval.py           # Local policy RAG (retail_rules.md)
-│   ├── gemini.py              # Grounded AI Copilot & fallback synthesizer
-│   └── prompts.py             # System prompts and grounding directives
-│
-├── docs/
-│   └── retail_rules.md        # Retail business rules, policies & thresholds
-│
-├── templates/
-│   └── index.html             # Executive analytics dashboard & chat UI
-│
-├── static/
-│   ├── css/
-│   │   └── styles.css         # Modern dark-slate UI styles
-│   └── js/
-│       └── app.js             # Client dashboard logic, Chart.js, Copilot
-│
-└── tests/
-    └── test_copilot.py        # 17 automated tests (normal & edge cases)
-```
+
+The goal is to move from:
+
+> **"What is happening?"**
+
+to:
+
+> **"Why is it happening, and what should I do next?"**
+
+---
+
+# 🏆 Hackathon Focus
+
+RetailIQ was developed as an AI-powered solution for the retail domain with a focus on combining **Generative AI, RAG, business rules, analytics, and operational inventory management** into one unified platform.
+
+The project demonstrates how AI can be integrated into an existing business workflow rather than being used only as a standalone chatbot.
+
+---
+
+# 🔮 Future Enhancements
+
+Potential future improvements include:
+
+* 📈 Advanced demand forecasting
+* 🤖 More autonomous AI agents
+* 📦 Automated reorder recommendations
+* 📊 Advanced sales prediction
+* 🔔 Real-time notifications
+* 📧 Email-based inventory alerts
+* 🏪 Multi-store inventory management
+* 📱 Mobile-friendly retail application
+* 🔗 ERP / POS integration
+* 📉 Advanced anomaly detection
+* 🧠 Personalized business recommendations
+* 📊 Predictive inventory optimization
+
+---
+
+# 👨‍💻 Developer
+
+## Vishnu Priyan S
+
+🎓 **B.Tech Information Technology**
+
+🏫 **V.S.B College of Engineering Technical Campus, Coimbatore**
+
+### Interests
+
+`Generative AI` · `Artificial Intelligence` · `Software Development` · `Data Analytics` · `Cloud Computing`
+
+---
+
+# ⭐ Support
+
+If you find **RetailIQ** interesting:
+
+⭐ Star the repository
+🍴 Fork the project
+💻 Explore the source code
+🚀 Try the application
+💡 Share your feedback
+
+---
+
+# 🛍️ RetailIQ
+
+> ### **See the data. Understand the business. Ask the AI. Make smarter decisions.** 🤖📊
+
+---
