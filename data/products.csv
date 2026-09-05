@@ -1,0 +1,22 @@
+product_id,product_name,category,selling_price,supplier,lead_time_days
+P001,Laptop Pro,Electronics,1200.0,TechCorp Global,7
+P002,Wireless Mouse,Electronics,25.0,Peripherals Direct,4
+P003,Noise-Canceling Headphones,Electronics,180.0,AudioTech Inc,5
+P004,Smart 4K TV 55-inch,Electronics,650.0,VisionElectronics,10
+P005,USB-C Fast Charging Hub,Electronics,35.0,Peripherals Direct,3
+P006,Artisan Sourdough,Grocery,6.5,Local Bakeries Co,2
+P007,Organic Whole Milk (1 Gallon),Grocery,4.8,Green Pastures Dairy,2
+P008,Premium Arabica Coffee Beans (1kg),Grocery,18.5,Roastmasters Intl,4
+P009,Greek Organic Yogurt (32oz),Grocery,5.2,Green Pastures Dairy,2
+P010,Extra Virgin Olive Oil (1L),Grocery,14.0,Mediterranean Harvest,6
+P011,Ceramic Cookware Set (10-Piece),Home,150.0,HomeChef Essentials,8
+P012,Ergonomic Desk Lamp,Home,45.0,Lumina Designs,5
+P013,Microfiber Bed Sheet Set (Queen),Home,38.0,CozyLiving Textiles,6
+P014,Stainless Steel Water Bottle (32oz),Home,22.0,HydroSteel Brands,4
+P015,Vintage Leather Jacket,Fashion,220.0,Heritage Apparel,12
+P016,Slim Fit Stretch Denim,Fashion,60.0,DenimWorks Co,7
+P017,Classic Oxford Cotton Shirt,Fashion,48.0,DenimWorks Co,6
+P018,Athletic Breathable Running Shoes,Fashion,95.0,Stride Athletic,8
+P019,Electric Toothbrush Pro,Personal Care,75.0,DentalCare Systems,5
+P020,Botanical Nourishing Shampoo (500ml),Personal Care,16.0,Naturals Beauty,3
+P021,Hydrating Peptide Face Cream,Personal Care,32.0,Naturals Beauty,4
