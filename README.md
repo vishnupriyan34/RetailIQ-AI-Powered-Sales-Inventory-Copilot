@@ -1,3 +1,5 @@
+TRACK_ID=PS6
+
 # 🛍️ RetailIQ — AI-Powered Sales & Inventory Copilot 🚀
 
 > ### *Turn retail data into intelligent decisions.* 🤖📊
@@ -8,7 +10,7 @@ The platform combines an interactive **Sales & Inventory Dashboard**, **AI Copil
 
 ---
 
-## 🌟 Why RetailIQ?
+\n---\n\n## 🏆 Hackathon Submission / Judge Quick Start\n\n**Track:** PS6\n\nRetailIQ is a Python-backed web application that runs the complete dashboard, APIs, deterministic retail intelligence, local RAG retrieval, and Gemini-powered Copilot from a single Flask server.\n\n### Requirements\n\n- Python **3.11**\n- A Gemini API key supplied through the `GEMINI_API_KEY` environment variable\n- Internet access only for Google Gemini API calls\n\n### Run the application\n\nFrom the repository root:\n\n```bash\npip install -r requirements.txt\npython app.py\n```\n\nThen open:\n\n```text\nhttp://localhost:8000\n```\n\nNo separate frontend server, frontend build step, or second terminal is required.\n\n### Gemini API key\n\nSet the key as an environment variable before starting the application. **Never commit the key to GitHub.**\n\nWindows PowerShell:\n\n```powershell\n$env:GEMINI_API_KEY="YOUR_GEMINI_API_KEY"\npython app.py\n```\n\nWindows Command Prompt:\n\n```cmd\nset GEMINI_API_KEY=YOUR_GEMINI_API_KEY\npython app.py\n```\n\nRetailIQ uses Google Gemini for generative responses and `gemini-embedding-001` for document/query embeddings. Retrieval storage is local; no hosted vector database or third-party RAG service is required.\n\n### Generated data and knowledge documents\n\nThe repository contains the generated, self-owned retail dataset used by the application:\n\n- `data/products.csv` — product catalog\n- `data/stores.csv` — store information\n- `data/sales.csv` — historical POS sales\n- `data/inventory.csv` — inventory records\n- `docs/retail_rules.md` — self-authored retail business rules used by the RAG layer\n\n`generate_data.py` can be used during development to regenerate the synthetic retail data. The generated data required for the submitted application is already included in the repository.\n\n### Demo video\n\n**Demo video:** `ADD_YOUR_DEMO_VIDEO_LINK_HERE`\n\n> Replace the placeholder above with the final 2–5 minute demo video link before submitting on Devfolio.\n\n---\n\n## 🌟 Why RetailIQ?
 
 Retail businesses often deal with:
 

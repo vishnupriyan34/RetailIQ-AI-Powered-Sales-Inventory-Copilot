@@ -1,5 +1,5 @@
 """
-Automated Test Suite for RetailIQ (PS03)
+Automated Test Suite for RetailIQ (PS6)
 Validates normal and difficult/edge cases across:
 - Deterministic Analytics Calculations
 - Alert & Rule Engine (Rules 1-5)

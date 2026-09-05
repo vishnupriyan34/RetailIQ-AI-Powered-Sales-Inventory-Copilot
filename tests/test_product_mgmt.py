@@ -1,5 +1,5 @@
 """
-Automated Test Suite for Product Management & Inventory Controls in RetailIQ (PS03)
+Automated Test Suite for Product Management & Inventory Controls in RetailIQ (PS6)
 Tests:
 - Unique Product ID Generation (GET /api/next-product-id)
 - Adding New Products (POST /api/products)

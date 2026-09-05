@@ -1,5 +1,5 @@
 """
-Synthetic Retail Data Generator for RetailIQ (NexusTiQ Hackathon PS03)
+Synthetic Retail Data Generator for RetailIQ (NexusTiQ Hackathon PS6)
 Generates realistic multi-store data covering:
 - products.csv
 - stores.csv

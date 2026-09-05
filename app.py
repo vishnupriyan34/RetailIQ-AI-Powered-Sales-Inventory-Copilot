@@ -1,5 +1,5 @@
 """
-RetailIQ - Retail Sales and Inventory Copilot (TRACK_ID=PS03)
+RetailIQ - Retail Sales and Inventory Copilot (TRACK_ID=PS6)
 Main Flask application serving the web dashboard, REST APIs, and Grounded AI Copilot.
 Runs on http://localhost:8000
 """
