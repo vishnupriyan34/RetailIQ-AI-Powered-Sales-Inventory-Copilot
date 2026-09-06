@@ -1,7 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-<!DOCTYPE html>
-<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,14 +12,21 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
   <script src="https://unpkg.com/lucide@latest"></script>
+
   <link rel="stylesheet" href="/static/css/styles.css">
 </head>
+
+<body>
+
   <!-- ======================================================== -->
   <!-- 1. LAYERED FUTURISTIC BACKGROUND                         -->
   <!-- ======================================================== -->
+
   <div class="command-center-bg" id="commandCenterBg">
+
     <!-- Interactive Particle Canvas -->
     <canvas id="particleCanvas"></canvas>
 
@@ -35,10 +40,13 @@
 
     <!-- Floating Retail, Sales, Inventory & AI Vector Icons -->
     <div class="floating-icons-container" id="floatingIconsContainer">
+
       <!-- LEFT CLUSTER -->
+
       <div class="floating-icon-node node-left pos-l1" data-speed="0.04" title="Shopping Cart">
         <svg viewBox="0 0 24 24" width="28" height="28" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round">
-          <circle cx="8" cy="21" r="1"></circle><circle cx="19" cy="21" r="1"></circle>
+          <circle cx="8" cy="21" r="1"></circle>
+          <circle cx="19" cy="21" r="1"></circle>
           <path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"></path>
         </svg>
       </div>
@@ -84,6 +92,7 @@
       </div>
 
       <!-- RIGHT CLUSTER -->
+
       <div class="floating-icon-node node-right pos-r1" data-speed="0.05" title="Warehouse Logistics">
         <svg viewBox="0 0 24 24" width="30" height="30" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round">
           <path d="M22 8.35V20a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V8.35A2 2 0 0 1 3.26 6.5l8-3.2a2 2 0 0 1 1.48 0l8 3.2A2 2 0 0 1 22 8.35Z"></path>
@@ -135,60 +144,81 @@
           <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path>
         </svg>
       </div>
+
     </div>
   </div>
 
   <div class="app-container">
+
     <!-- ======================================================== -->
     <!-- 2. TOP COMMAND HEADER                                    -->
     <!-- ======================================================== -->
+
     <header class="app-header">
+
       <div class="header-left">
         <div class="brand-logo">
+
           <div class="logo-core">
             <div class="logo-pulse"></div>
+
             <svg class="logo-svg" viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" stroke-width="2" fill="none">
               <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
             </svg>
           </div>
+
           <div class="brand-titles">
             <div class="brand-row">
               <span class="brand-name">RetailIQ</span>
               <span class="track-badge">PS6</span>
             </div>
+
             <span class="tagline">AI Retail Intelligence Command Center</span>
           </div>
+
         </div>
       </div>
 
       <div class="header-center">
+
         <div class="store-selector-wrapper">
+
           <div class="store-icon-wrap">
             <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none">
               <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
               <polyline points="9 22 9 12 15 12 15 22"></polyline>
             </svg>
           </div>
+
           <label for="storeFilter" class="store-label">Active Store:</label>
+
           <select id="storeFilter" class="store-dropdown">
             <option value="ALL">All Stores (Consolidated Network)</option>
           </select>
+
           <div class="dropdown-arrow">▼</div>
+
         </div>
+
       </div>
 
       <div class="header-right">
+
         <!-- System Status Pill -->
         <div class="system-status-pill" id="systemStatusBadge">
           <span class="status-beacon">
             <span class="beacon-ping"></span>
             <span class="beacon-dot"></span>
           </span>
-          <span class="status-label" id="engineStatusText">System Status: Healthy</span>
+
+          <span class="status-label" id="engineStatusText">
+            System Status: Healthy
+          </span>
         </div>
 
         <!-- Open Copilot Hero Button -->
         <button class="copilot-toggle-btn" id="openChatBtn">
+
           <span class="copilot-btn-icon">
             <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2" fill="none">
               <rect x="3" y="11" width="18" height="10" rx="2"></rect>
@@ -198,20 +228,29 @@
               <line x1="16" y1="16" x2="16" y2="16"></line>
             </svg>
           </span>
+
           <span class="copilot-btn-text">Open Copilot</span>
           <span class="alert-counter-badge" id="chatAlertCounter">!</span>
+
         </button>
+
       </div>
+
     </header>
 
     <!-- ======================================================== -->
     <!-- 3. MAIN WORKSPACE WITH FUTURISTIC SIDEBAR                -->
     <!-- ======================================================== -->
+
     <div class="workspace-wrapper">
+
       <!-- Sleek Futuristic Sidebar -->
       <aside class="command-sidebar">
+
         <div class="sidebar-section-title">COMMAND NAVIGATION</div>
+
         <nav class="sidebar-nav">
+
           <button class="sidebar-btn nav-tab active" data-tab="overviewTab" id="sideNavOverview">
             <span class="btn-icon">
               <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2" fill="none">
@@ -288,53 +327,85 @@
             </span>
             <span class="btn-text">Product Management</span>
           </button>
+
         </nav>
 
         <!-- Sidebar Telemetry Widget -->
+
         <div class="sidebar-telemetry-card">
+
           <div class="telemetry-header">
             <span class="telemetry-title">DECISION ENGINE</span>
             <span class="telemetry-status">ONLINE</span>
           </div>
+
           <div class="telemetry-row">
             <span>Runtime</span>
             <span class="telemetry-val">Python 3.13</span>
           </div>
+
           <div class="telemetry-row">
             <span>Accuracy</span>
             <span class="telemetry-val highlight">100% Deterministic</span>
           </div>
+
           <div class="telemetry-row">
             <span>RAG Model</span>
             <span class="telemetry-val">Local + Gemini</span>
           </div>
+
           <div class="telemetry-bar">
             <div class="telemetry-bar-fill"></div>
           </div>
+
         </div>
+
       </aside>
 
       <!-- Main Central Dashboard Pane -->
+
       <main class="main-layout">
+
         <div class="dashboard-pane">
+
           <!-- Navigation Tabs on Top of Workspace -->
+
           <nav class="dashboard-nav" id="topNavTabs">
             <button class="nav-tab active" data-tab="overviewTab">📊 Executive Overview</button>
-            <button class="nav-tab" data-tab="alertsTab">⚠️ Actionable Alerts <span class="tab-pill" id="tabAlertPillTop">0</span></button>
-            <button class="nav-tab" data-tab="inventoryTab">📦 Inventory & Stock Coverage</button>
-            <button class="nav-tab" data-tab="rulesTab">📜 Policy & Rule Engine RAG</button>
-            <button class="nav-tab" data-tab="productMgmtTab">🛠️ Product Management</button>
+
+            <button class="nav-tab" data-tab="alertsTab">
+              ⚠️ Actionable Alerts
+              <span class="tab-pill" id="tabAlertPillTop">0</span>
+            </button>
+
+            <button class="nav-tab" data-tab="inventoryTab">
+              📦 Inventory & Stock Coverage
+            </button>
+
+            <button class="nav-tab" data-tab="rulesTab">
+              📜 Policy & Rule Engine RAG
+            </button>
+
+            <button class="nav-tab" data-tab="productMgmtTab">
+              🛠️ Product Management
+            </button>
           </nav>
 
           <!-- ======================================================== -->
           <!-- TAB 1: EXECUTIVE OVERVIEW                                -->
           <!-- ======================================================== -->
+
           <section id="overviewTab" class="tab-pane active">
+
             <!-- Top 4 Premium Glass KPI Cards -->
+
             <div class="kpi-grid">
+
               <!-- KPI 1: Total Revenue -->
+
               <div class="kpi-card revenue-card">
                 <div class="card-glow-edge"></div>
+
                 <div class="kpi-top">
                   <div class="kpi-icon-wrap icon-cyan">
                     <svg viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" stroke-width="2" fill="none">
@@ -342,21 +413,33 @@
                       <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
                     </svg>
                   </div>
+
                   <span class="kpi-badge badge-cyan">Revenue</span>
                 </div>
+
                 <div class="kpi-content">
                   <span class="kpi-label">Total Revenue</span>
-                  <h2 class="kpi-value" id="kpiTotalRevenue">$1,668,206.20</h2>
+
+                  <h2 class="kpi-value" id="kpiTotalRevenue">
+                    $1,668,206.20
+                  </h2>
+
                   <div class="kpi-footer">
-                    <span class="kpi-subtext" id="kpiRevenue30d">Trailing 30d: $591,248.00</span>
+                    <span class="kpi-subtext" id="kpiRevenue30d">
+                      Trailing 30d: $591,248.00
+                    </span>
+
                     <span class="kpi-trend trend-up">▲ 14.8%</span>
                   </div>
                 </div>
+
               </div>
 
               <!-- KPI 2: Units Sold -->
+
               <div class="kpi-card units-card">
                 <div class="card-glow-edge"></div>
+
                 <div class="kpi-top">
                   <div class="kpi-icon-wrap icon-emerald">
                     <svg viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" stroke-width="2" fill="none">
@@ -365,21 +448,33 @@
                       <path d="M16 10a4 4 0 0 1-8 0"></path>
                     </svg>
                   </div>
+
                   <span class="kpi-badge badge-emerald">Sell-Through</span>
                 </div>
+
                 <div class="kpi-content">
                   <span class="kpi-label">Units Sold</span>
-                  <h2 class="kpi-value" id="kpiUnitsSold">24,437</h2>
+
+                  <h2 class="kpi-value" id="kpiUnitsSold">
+                    24,437
+                  </h2>
+
                   <div class="kpi-footer">
-                    <span class="kpi-subtext" id="kpiUnits30d">Trailing 30d: 8,280 units</span>
+                    <span class="kpi-subtext" id="kpiUnits30d">
+                      Trailing 30d: 8,280 units
+                    </span>
+
                     <span class="kpi-trend trend-up">▲ 9.2%</span>
                   </div>
                 </div>
+
               </div>
 
               <!-- KPI 3: Current Inventory -->
+
               <div class="kpi-card inventory-card">
                 <div class="card-glow-edge"></div>
+
                 <div class="kpi-top">
                   <div class="kpi-icon-wrap icon-purple">
                     <svg viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" stroke-width="2" fill="none">
@@ -388,21 +483,33 @@
                       <line x1="10" y1="12" x2="14" y2="12"></line>
                     </svg>
                   </div>
+
                   <span class="kpi-badge badge-purple">On Hand</span>
                 </div>
+
                 <div class="kpi-content">
                   <span class="kpi-label">Current Inventory</span>
-                  <h2 class="kpi-value" id="kpiInventoryUnits">3,073 units</h2>
+
+                  <h2 class="kpi-value" id="kpiInventoryUnits">
+                    3,073 units
+                  </h2>
+
                   <div class="kpi-footer">
-                    <span class="kpi-subtext" id="kpiInventoryValuation">Valuation: $149,666.76</span>
+                    <span class="kpi-subtext" id="kpiInventoryValuation">
+                      Valuation: $149,666.76
+                    </span>
+
                     <span class="kpi-trend trend-neutral">● Stable</span>
                   </div>
                 </div>
+
               </div>
 
               <!-- KPI 4: Needs Attention -->
+
               <div class="kpi-card alerts-card">
                 <div class="card-glow-edge"></div>
+
                 <div class="kpi-top">
                   <div class="kpi-icon-wrap icon-coral">
                     <svg viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" stroke-width="2" fill="none">
@@ -411,69 +518,123 @@
                       <line x1="12" y1="17" x2="12.01" y2="17"></line>
                     </svg>
                   </div>
+
                   <span class="kpi-badge badge-coral">Rule Alerts</span>
                 </div>
+
                 <div class="kpi-content">
                   <span class="kpi-label">Products Needing Attention</span>
-                  <h2 class="kpi-value alert-coral-val" id="kpiAlertCount">27</h2>
+
+                  <h2 class="kpi-value alert-coral-val" id="kpiAlertCount">
+                    27
+                  </h2>
+
                   <div class="kpi-footer">
-                    <span class="kpi-subtext" id="kpiAlertSubtext">8 Critical Stock-outs (14 Warnings)</span>
+                    <span class="kpi-subtext" id="kpiAlertSubtext">
+                      8 Critical Stock-outs (14 Warnings)
+                    </span>
+
                     <span class="kpi-trend trend-alert">⚠️ Action Req.</span>
                   </div>
                 </div>
+
               </div>
+
             </div>
 
             <!-- Charts Row -->
+
             <div class="charts-grid" id="salesTrendSection">
+
               <!-- Daily Sales Line Chart -->
+
               <div class="chart-card sales-trend-card glass-panel">
+
                 <div class="card-header">
+
                   <div class="header-text-group">
                     <div class="header-pretitle">VELOCITY INTELLIGENCE</div>
-                    <h3>Daily Sales Revenue Trend <span class="header-sub">(Last 30 Days)</span></h3>
+
+                    <h3>
+                      Daily Sales Revenue Trend
+                      <span class="header-sub">(Last 30 Days)</span>
+                    </h3>
                   </div>
+
                   <div class="header-badges">
-                    <span class="neon-pill cyan-pill">POS Transactions</span>
+                    <span class="neon-pill cyan-pill">
+                      POS Transactions
+                    </span>
                   </div>
+
                 </div>
+
                 <div class="chart-wrapper">
                   <canvas id="salesTrendChart"></canvas>
                 </div>
+
               </div>
 
               <!-- Category Revenue Donut Chart -->
+
               <div class="chart-card category-card glass-panel">
+
                 <div class="card-header">
+
                   <div class="header-text-group">
                     <div class="header-pretitle">MERCHANDISE MIX</div>
                     <h3>Sales by Category</h3>
                   </div>
-                  <span class="neon-pill purple-pill">Revenue Share</span>
+
+                  <span class="neon-pill purple-pill">
+                    Revenue Share
+                  </span>
+
                 </div>
+
                 <div class="chart-wrapper donut-wrapper">
+
                   <canvas id="categoryChart"></canvas>
+
                   <div class="donut-center-overlay">
                     <span class="donut-total-lbl">TOTAL NETWORK</span>
-                    <span class="donut-total-val" id="donutTotalRevenue">$1.67M</span>
+
+                    <span class="donut-total-val" id="donutTotalRevenue">
+                      $1.67M
+                    </span>
                   </div>
+
                 </div>
+
               </div>
+
             </div>
 
             <!-- Dual Grid: Store Rankings & Urgent Priority Alerts -->
+
             <div class="dual-grid" id="storeRankingsSection">
+
               <!-- Store Performance Table -->
+
               <div class="panel-card glass-panel">
+
                 <div class="card-header">
+
                   <div class="header-text-group">
                     <div class="header-pretitle">LOCATION RANKINGS</div>
                     <h3>Store Performance Rankings</h3>
                   </div>
-                  <span class="neon-pill blue-pill">Multi-Store POS</span>
+
+                  <span class="neon-pill blue-pill">
+                    Multi-Store POS
+                  </span>
+
                 </div>
+
                 <div class="table-responsive">
+
                   <table class="data-table" id="storeTable">
+
                     <thead>
                       <tr>
                         <th>Rank & Store</th>
@@ -482,78 +643,144 @@
                         <th>Stock Valuation</th>
                       </tr>
                     </thead>
+
                     <tbody>
                       <!-- Injected via JS -->
                     </tbody>
+
                   </table>
+
                 </div>
+
               </div>
 
               <!-- Urgent Decision Priority Panel -->
+
               <div class="panel-card glass-panel">
+
                 <div class="card-header">
+
                   <div class="header-text-group">
                     <div class="header-pretitle">DECISION TRIAGE</div>
                     <h3>Urgent Decision Priority</h3>
                   </div>
+
                   <button class="card-action-btn" onclick="switchTab('alertsTab')">
                     <span>View All 27 Alerts</span>
                     <span class="arrow">→</span>
                   </button>
+
                 </div>
+
                 <div class="priority-list" id="priorityAlertList">
                   <!-- Injected via JS -->
                 </div>
+
               </div>
+
             </div>
+
           </section>
 
           <!-- ======================================================== -->
           <!-- TAB 2: ACTIONABLE ALERTS (RULE ENGINE)                   -->
           <!-- ======================================================== -->
+
           <section id="alertsTab" class="tab-pane">
+
             <div class="panel-card glass-panel">
+
               <div class="card-header">
+
                 <div>
-                  <div class="header-pretitle">AUTHORITATIVE RULE SYSTEM</div>
+                  <div class="header-pretitle">
+                    AUTHORITATIVE RULE SYSTEM
+                  </div>
+
                   <h2>Deterministic Rule Engine Alerts</h2>
-                  <p class="subtitle">Every alert is evaluated with exact mathematical formulas, transparent operational thresholds, and verifiable evidence packages.</p>
+
+                  <p class="subtitle">
+                    Every alert is evaluated with exact mathematical formulas, transparent operational thresholds, and verifiable evidence packages.
+                  </p>
                 </div>
+
                 <div class="filter-pills" id="ruleTypeFilters">
-                  <button class="pill active" data-rule="ALL">All Alerts (<span id="countAll">0</span>)</button>
-                  <button class="pill pill-critical" data-rule="RULE_1_STOCKOUT">🔴 Stock-Out (<span id="countR1">0</span>)</button>
-                  <button class="pill pill-warning" data-rule="RULE_2_OVERSTOCK">🟠 Overstock (<span id="countR2">0</span>)</button>
-                  <button class="pill pill-info" data-rule="RULE_3_SLOW_MOVING">🟡 Slow Moving (<span id="countR3">0</span>)</button>
-                  <button class="pill pill-success" data-rule="RULE_4_SALES_SPIKE">🟢 Spikes (<span id="countR4">0</span>)</button>
-                  <button class="pill pill-blue" data-rule="RULE_5_SALES_DROP">🔵 Drops (<span id="countR5">0</span>)</button>
+
+                  <button class="pill active" data-rule="ALL">
+                    All Alerts (<span id="countAll">0</span>)
+                  </button>
+
+                  <button class="pill pill-critical" data-rule="RULE_1_STOCKOUT">
+                    🔴 Stock-Out (<span id="countR1">0</span>)
+                  </button>
+
+                  <button class="pill pill-warning" data-rule="RULE_2_OVERSTOCK">
+                    🟠 Overstock (<span id="countR2">0</span>)
+                  </button>
+
+                  <button class="pill pill-info" data-rule="RULE_3_SLOW_MOVING">
+                    🟡 Slow Moving (<span id="countR3">0</span>)
+                  </button>
+
+                  <button class="pill pill-success" data-rule="RULE_4_SALES_SPIKE">
+                    🟢 Spikes (<span id="countR4">0</span>)
+                  </button>
+
+                  <button class="pill pill-blue" data-rule="RULE_5_SALES_DROP">
+                    🔵 Drops (<span id="countR5">0</span>)
+                  </button>
+
                 </div>
+
               </div>
 
               <div class="alerts-feed" id="alertsFeed">
                 <!-- Injected via JS -->
               </div>
+
             </div>
+
           </section>
 
           <!-- ======================================================== -->
           <!-- TAB 3: INVENTORY & STOCK COVERAGE MATRIX                 -->
           <!-- ======================================================== -->
+
           <section id="inventoryTab" class="tab-pane">
+
             <div class="panel-card glass-panel">
+
               <div class="card-header">
+
                 <div>
-                  <div class="header-pretitle">STOCK POSITIONING MATRIX</div>
+                  <div class="header-pretitle">
+                    STOCK POSITIONING MATRIX
+                  </div>
+
                   <h2>Store Inventory & Forward Stock Coverage</h2>
-                  <p class="subtitle">Authoritative Days of Stock Remaining (<code>Coverage = Current Stock / Daily Velocity</code>).</p>
+
+                  <p class="subtitle">
+                    Authoritative Days of Stock Remaining
+                    (<code>Coverage = Current Stock / Daily Velocity</code>).
+                  </p>
                 </div>
+
                 <div class="search-box">
                   <span class="search-icon">🔍</span>
-                  <input type="text" id="inventorySearch" placeholder="Search SKU, product or store...">
+
+                  <input
+                    type="text"
+                    id="inventorySearch"
+                    placeholder="Search SKU, product or store..."
+                  >
                 </div>
+
               </div>
 
               <div class="table-responsive">
+
                 <table class="data-table" id="inventoryTable">
+
                   <thead>
                     <tr>
                       <th>Product SKU</th>
@@ -569,86 +796,192 @@
                       <th>Triage</th>
                     </tr>
                   </thead>
+
                   <tbody id="inventoryTableBody">
                     <!-- Injected via JS -->
                   </tbody>
+
                 </table>
+
               </div>
+
             </div>
+
           </section>
 
           <!-- ======================================================== -->
           <!-- TAB 4: INTERNAL KNOWLEDGE & POLICIES RAG                 -->
           <!-- ======================================================== -->
+
           <section id="rulesTab" class="tab-pane">
+
             <div class="panel-card glass-panel">
+
               <div class="card-header">
+
                 <div>
-                  <div class="header-pretitle">GROUNDED KNOWLEDGE BASE</div>
+                  <div class="header-pretitle">
+                    GROUNDED KNOWLEDGE BASE
+                  </div>
+
                   <h2>Authoritative Retail Operating Policies</h2>
-                  <p class="subtitle">Locally indexed from <code>docs/retail_rules.md</code>. Source of grounding citations for all AI Copilot decisions.</p>
+
+                  <p class="subtitle">
+                    Locally indexed from
+                    <code>docs/retail_rules.md</code>.
+                    Source of grounding citations for all AI Copilot decisions.
+                  </p>
                 </div>
+
               </div>
+
               <div class="rules-container" id="rulesContainer">
                 <!-- Injected via JS -->
               </div>
+
             </div>
+
           </section>
 
           <!-- ======================================================== -->
           <!-- TAB 5: PRODUCT MANAGEMENT                                -->
           <!-- ======================================================== -->
+
           <section id="productMgmtTab" class="tab-pane">
+
             <div class="panel-card glass-panel">
+
               <div class="card-header mgmt-header">
+
                 <div>
-                  <div class="header-pretitle">CATALOGUE & STOCK MASTER</div>
+
+                  <div class="header-pretitle">
+                    CATALOGUE & STOCK MASTER
+                  </div>
+
                   <div class="mgmt-title-row">
-                    <h2>Product Management & Inventory Controls</h2>
-                    <button class="btn-primary-action btn-add-prominent" id="openAddProductModalBtn" onclick="openAddProductModal()">
-                      <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2.5" fill="none">
+
+                    <h2>
+                      Product Management & Inventory Controls
+                    </h2>
+
+                    <button
+                      class="btn-primary-action btn-add-prominent"
+                      id="openAddProductModalBtn"
+                      onclick="openAddProductModal()"
+                    >
+
+                      <svg
+                        viewBox="0 0 24 24"
+                        width="16"
+                        height="16"
+                        stroke="currentColor"
+                        stroke-width="2.5"
+                        fill="none"
+                      >
                         <line x1="12" y1="5" x2="12" y2="19"></line>
                         <line x1="5" y1="12" x2="19" y2="12"></line>
                       </svg>
+
                       <span>+ Add Product</span>
+
                     </button>
+
                   </div>
-                  <p class="subtitle">Directly add new products to the catalogue or adjust store-level stock in real time without touching CSV files.</p>
+
+                  <p class="subtitle">
+                    Directly add new products to the catalogue or adjust store-level stock in real time without touching CSV files.
+                  </p>
+
                 </div>
+
               </div>
 
               <!-- Product Management Filter Bar -->
+
               <div class="mgmt-filter-bar">
+
                 <div class="search-box mgmt-search">
+
                   <span class="search-icon">🔍</span>
-                  <input type="text" id="mgmtSearchInput" placeholder="Search SKU, product name, or supplier...">
+
+                  <input
+                    type="text"
+                    id="mgmtSearchInput"
+                    placeholder="Search SKU, product name, or supplier..."
+                  >
+
                 </div>
+
                 <div class="mgmt-filters-group">
+
                   <div class="filter-select-wrap">
-                    <label for="mgmtCategoryFilter">Category:</label>
-                    <select id="mgmtCategoryFilter" class="filter-select">
-                      <option value="ALL">All Categories</option>
+
+                    <label for="mgmtCategoryFilter">
+                      Category:
+                    </label>
+
+                    <select
+                      id="mgmtCategoryFilter"
+                      class="filter-select"
+                    >
+                      <option value="ALL">
+                        All Categories
+                      </option>
                     </select>
+
                   </div>
+
                   <div class="filter-select-wrap">
-                    <label for="mgmtStoreFilter">Store:</label>
-                    <select id="mgmtStoreFilter" class="filter-select">
-                      <option value="ALL">All Stores</option>
+
+                    <label for="mgmtStoreFilter">
+                      Store:
+                    </label>
+
+                    <select
+                      id="mgmtStoreFilter"
+                      class="filter-select"
+                    >
+                      <option value="ALL">
+                        All Stores
+                      </option>
                     </select>
+
                   </div>
-                  <button type="button" class="btn-primary-action" onclick="openAddProductModal()" style="padding: 6px 14px; font-size: 12px;">
-                    <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" stroke-width="2.5" fill="none">
+
+                  <button
+                    type="button"
+                    class="btn-primary-action"
+                    onclick="openAddProductModal()"
+                    style="padding: 6px 14px; font-size: 12px;"
+                  >
+
+                    <svg
+                      viewBox="0 0 24 24"
+                      width="14"
+                      height="14"
+                      stroke="currentColor"
+                      stroke-width="2.5"
+                      fill="none"
+                    >
                       <line x1="12" y1="5" x2="12" y2="19"></line>
                       <line x1="5" y1="12" x2="19" y2="12"></line>
                     </svg>
+
                     <span>+ Add Product</span>
+
                   </button>
+
                 </div>
+
               </div>
 
               <!-- Product Management Table -->
+
               <div class="table-responsive">
+
                 <table class="data-table" id="productMgmtTable">
+
                   <thead>
                     <tr>
                       <th>Product ID</th>
@@ -665,359 +998,1022 @@
                       <th>Actions</th>
                     </tr>
                   </thead>
+
                   <tbody id="productMgmtTableBody">
                     <!-- Injected via JS -->
                   </tbody>
+
                 </table>
+
               </div>
+
             </div>
+
           </section>
+
         </div>
 
         <!-- ======================================================== -->
         <!-- 4. RIGHT PANE: AI COPILOT COMMAND DRAWER                 -->
         <!-- ======================================================== -->
+
         <aside class="copilot-drawer collapsed" id="copilotDrawer">
+
           <!-- Drawer Header -->
+
           <div class="drawer-header">
+
             <div class="copilot-title">
+
               <div class="copilot-avatar-wrap">
                 <span class="copilot-avatar">🤖</span>
                 <span class="avatar-online-dot"></span>
               </div>
+
               <div>
+
                 <div class="drawer-main-title">
                   <h3>RetailIQ Copilot</h3>
-                  <span class="copilot-tech-badge">GenAI Decision Engine</span>
+                  <span class="copilot-tech-badge">
+                    GenAI Decision Engine
+                  </span>
                 </div>
-                <span class="copilot-caption" id="copilotModelCaption">Authoritative Grounded Synthesizer</span>
+
+                <span
+                  class="copilot-caption"
+                  id="copilotModelCaption"
+                >
+                  Authoritative Grounded Synthesizer
+                </span>
+
               </div>
+
             </div>
-            <button class="close-drawer-btn" id="closeChatBtn" title="Close Copilot">✕</button>
+
+            <button
+              class="close-drawer-btn"
+              id="closeChatBtn"
+              title="Close Copilot"
+            >
+              ✕
+            </button>
+
           </div>
 
           <!-- ZERO HALLUCINATION GUARANTEE CARD -->
+
           <div class="hallucination-guarantee-card">
+
             <div class="guarantee-icon-wrap">
-              <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none">
+
+              <svg
+                viewBox="0 0 24 24"
+                width="20"
+                height="20"
+                stroke="currentColor"
+                stroke-width="2"
+                fill="none"
+              >
                 <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
                 <path d="m9 12 2 2 4-4"></path>
               </svg>
+
             </div>
+
             <div class="guarantee-content">
-              <div class="guarantee-headline">Zero Hallucination Guarantee</div>
-              <p class="guarantee-desc">All numbers, ADS values, and coverage days are deterministically calculated by Python. RetailIQ never invents business metrics.</p>
+
+              <div class="guarantee-headline">
+                Zero Hallucination Guarantee
+              </div>
+
+              <p class="guarantee-desc">
+                All numbers, ADS values, and coverage days are deterministically calculated by Python. RetailIQ never invents business metrics.
+              </p>
+
             </div>
+
           </div>
 
           <!-- Suggested Manager Prompt Chips -->
+
           <div class="suggested-prompts-container">
+
             <div class="suggested-header">
-              <span class="suggested-title">💡 SUGGESTED MANAGER INQUIRIES</span>
-              <span class="suggested-badge">1-Click Triage</span>
+
+              <span class="suggested-title">
+                💡 SUGGESTED MANAGER INQUIRIES
+              </span>
+
+              <span class="suggested-badge">
+                1-Click Triage
+              </span>
+
             </div>
+
             <div class="prompt-chips">
-              <button class="chip" onclick="askPrompt('What products need attention today?')">⚡ What products need attention today?</button>
-              <button class="chip chip-critical" onclick="askPrompt('Why is Wireless Mouse flagged?')">🔴 Why is Wireless Mouse flagged?</button>
-              <button class="chip" onclick="askPrompt('How did Laptop Pro perform this month?')">💻 How did Laptop Pro perform this month?</button>
-              <button class="chip" onclick="askPrompt('What should I reorder?')">📦 What should I reorder?</button>
-              <button class="chip" onclick="askPrompt('What is overstocked?')">🟠 What is overstocked?</button>
-              <button class="chip" onclick="askPrompt('Show me products with a sales drop.')">📉 Show me products with a sales drop</button>
-              <button class="chip" onclick="askPrompt('Which store generated the most revenue?')">🏪 Which store generated the most revenue?</button>
-              <button class="chip chip-guardrail" onclick="askPrompt('What will our sales be exactly 6 months from now?')">🛡️ Forecast sales 6 months from now?</button>
+
+              <button
+                class="chip"
+                onclick="askPrompt('What products need attention today?')"
+              >
+                ⚡ What products need attention today?
+              </button>
+
+              <button
+                class="chip chip-critical"
+                onclick="askPrompt('Why is Wireless Mouse flagged?')"
+              >
+                🔴 Why is Wireless Mouse flagged?
+              </button>
+
+              <button
+                class="chip"
+                onclick="askPrompt('How did Laptop Pro perform this month?')"
+              >
+                💻 How did Laptop Pro perform this month?
+              </button>
+
+              <button
+                class="chip"
+                onclick="askPrompt('What should I reorder?')"
+              >
+                📦 What should I reorder?
+              </button>
+
+              <button
+                class="chip"
+                onclick="askPrompt('What is overstocked?')"
+              >
+                🟠 What is overstocked?
+              </button>
+
+              <button
+                class="chip"
+                onclick="askPrompt('Show me products with a sales drop.')"
+              >
+                📉 Show me products with a sales drop
+              </button>
+
+              <button
+                class="chip"
+                onclick="askPrompt('Which store generated the most revenue?')"
+              >
+                🏪 Which store generated the most revenue?
+              </button>
+
+              <button
+                class="chip chip-guardrail"
+                onclick="askPrompt('What will our sales be exactly 6 months from now?')"
+              >
+                🛡️ Forecast sales 6 months from now?
+              </button>
+
             </div>
+
           </div>
 
           <!-- Chat Messages Scroll Area -->
+
           <div class="chat-messages" id="chatMessages">
+
             <div class="chat-message assistant-message welcome-message">
+
               <div class="msg-header">
+
                 <div class="sender-info">
                   <span class="sender-avatar-mini">🤖</span>
                   <span class="sender-name">RetailIQ Copilot</span>
                 </div>
-                <span class="msg-time">System Ready</span>
+
+                <span class="msg-time">
+                  System Ready
+                </span>
+
               </div>
+
               <div class="msg-body">
-                <p>Welcome, Store Manager. I am your <strong>Retail Sales and Inventory Intelligence Copilot</strong>.</p>
-                <p>I analyze Point-of-Sale sales data, stock balances, and rule alerts to provide grounded, audit-ready inventory and replenishment recommendations.</p>
-                <p>Select any suggested question above or type your operational inquiry below.</p>
+
+                <p>
+                  Welcome, Store Manager. I am your
+                  <strong>Retail Sales and Inventory Intelligence Copilot</strong>.
+                </p>
+
+                <p>
+                  I analyze Point-of-Sale sales data, stock balances, and rule alerts to provide grounded, audit-ready inventory and replenishment recommendations.
+                </p>
+
+                <p>
+                  Select any suggested question above or type your operational inquiry below.
+                </p>
+
               </div>
+
             </div>
+
           </div>
 
           <!-- Evidence Mode Status Bar -->
+
           <div class="evidence-mode-bar">
+
             <div class="evidence-mode-left">
+
               <span class="evidence-pulse"></span>
-              <span class="evidence-status-lbl">Evidence Mode:</span>
-              <span class="evidence-status-val">ON (Authoritative)</span>
+
+              <span class="evidence-status-lbl">
+                Evidence Mode:
+              </span>
+
+              <span class="evidence-status-val">
+                ON (Authoritative)
+              </span>
+
             </div>
-            <span class="evidence-tag">Zero Speculation</span>
+
+            <span class="evidence-tag">
+              Zero Speculation
+            </span>
+
           </div>
 
           <!-- Chat Input Area -->
+
           <form class="chat-input-area" id="chatForm">
+
             <div class="input-glow-wrapper">
-              <input 
-                type="text" 
-                id="chatInput" 
-                placeholder="Ask about inventory, stock-outs, sales spikes, store performance..." 
+
+              <input
+                type="text"
+                id="chatInput"
+                placeholder="Ask about inventory, stock-outs, sales spikes, store performance..."
                 autocomplete="off"
                 required
               >
-              <button type="submit" id="sendBtn" class="send-btn" title="Send Inquiry">
+
+              <button
+                type="submit"
+                id="sendBtn"
+                class="send-btn"
+                title="Send Inquiry"
+              >
                 <span class="send-text">Send</span>
                 <span class="send-icon">➤</span>
               </button>
+
             </div>
+
           </form>
+
         </aside>
+
       </main>
+
     </div>
+
   </div>
 
   <!-- ======================================================== -->
   <!-- MODAL: ADD PRODUCT                                       -->
   <!-- ======================================================== -->
-  <div class="modal-overlay" id="addProductModal" style="display: none;">
-    <div class="modal-backdrop" onclick="closeAddProductModal()"></div>
+
+  <div
+    class="modal-overlay"
+    id="addProductModal"
+    style="display: none;"
+  >
+
+    <div
+      class="modal-backdrop"
+      onclick="closeAddProductModal()"
+    ></div>
+
     <div class="modal-card">
+
       <div class="modal-header">
+
         <div class="modal-title-wrap">
+
           <div class="modal-icon-badge">✨</div>
+
           <div>
-            <h3 class="modal-title">Add New Product</h3>
-            <p class="modal-subtitle">Register a new SKU directly into the retail inventory network</p>
+
+            <h3 class="modal-title">
+              Add New Product
+            </h3>
+
+            <p class="modal-subtitle">
+              Register a new SKU directly into the retail inventory network
+            </p>
+
           </div>
+
         </div>
-        <button class="modal-close-btn" onclick="closeAddProductModal()" title="Close">✕</button>
+
+        <button
+          class="modal-close-btn"
+          onclick="closeAddProductModal()"
+          title="Close"
+        >
+          ✕
+        </button>
+
       </div>
-      
-      <form id="addProductForm" onsubmit="handleProductSubmit(event)">
+
+      <form
+        id="addProductForm"
+        onsubmit="handleProductSubmit(event)"
+      >
+
         <div class="modal-body">
+
           <div class="form-grid">
+
             <div class="form-group">
-              <label for="newProductId">Product ID (Auto-Generated)</label>
-              <input type="text" id="newProductId" class="form-input read-only-input" readonly>
+
+              <label for="newProductId">
+                Product ID (Auto-Generated)
+              </label>
+
+              <input
+                type="text"
+                id="newProductId"
+                class="form-input read-only-input"
+                readonly
+              >
+
             </div>
+
             <div class="form-group">
-              <label for="newProductName">Product Name *</label>
-              <input type="text" id="newProductName" class="form-input" placeholder="e.g. Smart Watch Pro" required>
+
+              <label for="newProductName">
+                Product Name *
+              </label>
+
+              <input
+                type="text"
+                id="newProductName"
+                class="form-input"
+                placeholder="e.g. Smart Watch Pro"
+                required
+              >
+
             </div>
+
           </div>
 
           <div class="form-grid">
+
             <div class="form-group">
-              <label for="newProductCategory">Category *</label>
-              <select id="newProductCategory" class="form-input" required>
-                <option value="" disabled selected>Select category...</option>
-                <option value="Electronics">Electronics</option>
-                <option value="Accessories">Accessories</option>
-                <option value="Audio">Audio</option>
-                <option value="Wearables">Wearables</option>
-                <option value="Home & Office">Home & Office</option>
+
+              <label for="newProductCategory">
+                Category *
+              </label>
+
+              <select
+                id="newProductCategory"
+                class="form-input"
+                required
+              >
+                <option value="" disabled selected>
+                  Select category...
+                </option>
+
+                <option value="Electronics">
+                  Electronics
+                </option>
+
+                <option value="Accessories">
+                  Accessories
+                </option>
+
+                <option value="Audio">
+                  Audio
+                </option>
+
+                <option value="Wearables">
+                  Wearables
+                </option>
+
+                <option value="Home & Office">
+                  Home & Office
+                </option>
+
               </select>
+
             </div>
+
             <div class="form-group">
-              <label for="newProductPrice">Selling Price ($) *</label>
-              <input type="number" id="newProductPrice" class="form-input" step="0.01" min="0.01" placeholder="e.g. 199.99" required>
+
+              <label for="newProductPrice">
+                Selling Price ($) *
+              </label>
+
+              <input
+                type="number"
+                id="newProductPrice"
+                class="form-input"
+                step="0.01"
+                min="0.01"
+                placeholder="e.g. 199.99"
+                required
+              >
+
             </div>
+
           </div>
 
           <div class="form-grid">
+
             <div class="form-group">
-              <label for="newProductStore">Initial Store Location *</label>
-              <select id="newProductStore" class="form-input" required>
-                <option value="" disabled selected>Select destination store...</option>
+
+              <label for="newProductStore">
+                Initial Store Location *
+              </label>
+
+              <select
+                id="newProductStore"
+                class="form-input"
+                required
+              >
+                <option value="" disabled selected>
+                  Select destination store...
+                </option>
               </select>
+
             </div>
+
             <div class="form-group">
-              <label for="newProductStock">Initial Stock Quantity *</label>
-              <input type="number" id="newProductStock" class="form-input" min="0" step="1" placeholder="e.g. 50" required>
+
+              <label for="newProductStock">
+                Initial Stock Quantity *
+              </label>
+
+              <input
+                type="number"
+                id="newProductStock"
+                class="form-input"
+                min="0"
+                step="1"
+                placeholder="e.g. 50"
+                required
+              >
+
             </div>
+
           </div>
 
           <div class="form-grid three-col">
+
             <div class="form-group">
-              <label for="newProductReorder">Reorder Level *</label>
-              <input type="number" id="newProductReorder" class="form-input" min="0" step="1" placeholder="e.g. 20" required>
+
+              <label for="newProductReorder">
+                Reorder Level *
+              </label>
+
+              <input
+                type="number"
+                id="newProductReorder"
+                class="form-input"
+                min="0"
+                step="1"
+                placeholder="e.g. 20"
+                required
+              >
+
             </div>
+
             <div class="form-group">
-              <label for="newProductSafety">Safety Stock *</label>
-              <input type="number" id="newProductSafety" class="form-input" min="0" step="1" placeholder="e.g. 10" required>
+
+              <label for="newProductSafety">
+                Safety Stock *
+              </label>
+
+              <input
+                type="number"
+                id="newProductSafety"
+                class="form-input"
+                min="0"
+                step="1"
+                placeholder="e.g. 10"
+                required
+              >
+
             </div>
+
             <div class="form-group">
-              <label for="newProductLeadTime">Lead Time (Days) *</label>
-              <input type="number" id="newProductLeadTime" class="form-input" min="1" step="1" placeholder="e.g. 7" required>
+
+              <label for="newProductLeadTime">
+                Lead Time (Days) *
+              </label>
+
+              <input
+                type="number"
+                id="newProductLeadTime"
+                class="form-input"
+                min="1"
+                step="1"
+                placeholder="e.g. 7"
+                required
+              >
+
             </div>
+
           </div>
 
           <div class="form-group">
-            <label for="newProductSupplier">Supplier (Optional)</label>
-            <input type="text" id="newProductSupplier" class="form-input" placeholder="e.g. Global Tech Distributors">
+
+            <label for="newProductSupplier">
+              Supplier (Optional)
+            </label>
+
+            <input
+              type="text"
+              id="newProductSupplier"
+              class="form-input"
+              placeholder="e.g. Global Tech Distributors"
+            >
+
           </div>
 
           <div class="modal-notice">
+
             <span class="notice-icon">ℹ️</span>
-            <span>The new product will be automatically provisioned across all stores. Selected store receives the initial stock; others initialize at 0 stock.</span>
+
+            <span>
+              The new product will be automatically provisioned across all stores. Selected store receives the initial stock; others initialize at 0 stock.
+            </span>
+
           </div>
+
         </div>
 
         <div class="modal-footer">
-          <button type="button" class="btn-secondary" onclick="closeAddProductModal()">Cancel</button>
-          <button type="submit" class="btn-primary" id="saveProductBtn">
+
+          <button
+            type="button"
+            class="btn-secondary"
+            onclick="closeAddProductModal()"
+          >
+            Cancel
+          </button>
+
+          <button
+            type="submit"
+            class="btn-primary"
+            id="saveProductBtn"
+          >
+
             <span class="btn-icon">💾</span>
             <span>Save Product</span>
+
           </button>
+
         </div>
+
       </form>
+
     </div>
+
   </div>
 
   <!-- ======================================================== -->
   <!-- MODAL: UPDATE INVENTORY STOCK                            -->
   <!-- ======================================================== -->
-  <div class="modal-overlay" id="updateStockModal" style="display: none;">
-    <div class="modal-backdrop" onclick="closeUpdateStockModal()"></div>
+
+  <div
+    class="modal-overlay"
+    id="updateStockModal"
+    style="display: none;"
+  >
+
+    <div
+      class="modal-backdrop"
+      onclick="closeUpdateStockModal()"
+    ></div>
+
     <div class="modal-card modal-compact">
+
       <div class="modal-header">
+
         <div class="modal-title-wrap">
-          <div class="modal-icon-badge stock-badge">📦</div>
-          <div>
-            <h3 class="modal-title">Update Inventory Stock</h3>
-            <p class="modal-subtitle" id="updateStockSubtitle">Adjust stock for SKU at store location</p>
+
+          <div class="modal-icon-badge stock-badge">
+            📦
           </div>
+
+          <div>
+
+            <h3 class="modal-title">
+              Update Inventory Stock
+            </h3>
+
+            <p
+              class="modal-subtitle"
+              id="updateStockSubtitle"
+            >
+              Adjust stock for SKU at store location
+            </p>
+
+          </div>
+
         </div>
-        <button class="modal-close-btn" onclick="closeUpdateStockModal()" title="Close">✕</button>
+
+        <button
+          class="modal-close-btn"
+          onclick="closeUpdateStockModal()"
+          title="Close"
+        >
+          ✕
+        </button>
+
       </div>
 
-      <form id="updateStockForm" onsubmit="handleStockUpdateSubmit(event)">
-        <input type="hidden" id="updateStockProductId">
-        <input type="hidden" id="updateStockStoreId">
+      <form
+        id="updateStockForm"
+        onsubmit="handleStockUpdateSubmit(event)"
+      >
+
+        <input
+          type="hidden"
+          id="updateStockProductId"
+        >
+
+        <input
+          type="hidden"
+          id="updateStockStoreId"
+        >
 
         <div class="modal-body">
+
           <div class="stock-summary-box">
+
             <div class="summary-col">
               <span class="summary-lbl">Product:</span>
-              <strong class="summary-val" id="updateStockProductNameDisplay">-</strong>
+              <strong
+                class="summary-val"
+                id="updateStockProductNameDisplay"
+              >
+                -
+              </strong>
             </div>
+
             <div class="summary-col">
               <span class="summary-lbl">Store:</span>
-              <strong class="summary-val" id="updateStockStoreNameDisplay">-</strong>
+              <strong
+                class="summary-val"
+                id="updateStockStoreNameDisplay"
+              >
+                -
+              </strong>
             </div>
+
             <div class="summary-col">
               <span class="summary-lbl">Current Stock:</span>
-              <strong class="summary-val highlight" id="updateStockCurrentDisplay">0</strong>
+              <strong
+                class="summary-val highlight"
+                id="updateStockCurrentDisplay"
+              >
+                0
+              </strong>
             </div>
+
           </div>
 
-          <div class="form-group" style="margin-top: 16px;">
-            <label for="updateStockNewVal">New Stock Quantity *</label>
-            <input type="number" id="updateStockNewVal" class="form-input" min="0" step="1" required placeholder="Enter updated units">
+          <div
+            class="form-group"
+            style="margin-top: 16px;"
+          >
+
+            <label for="updateStockNewVal">
+              New Stock Quantity *
+            </label>
+
+            <input
+              type="number"
+              id="updateStockNewVal"
+              class="form-input"
+              min="0"
+              step="1"
+              required
+              placeholder="Enter updated units"
+            >
+
           </div>
 
           <div class="form-group">
-            <label for="updateStockReason">Adjustment Reason (Optional)</label>
-            <select id="updateStockReason" class="form-input">
-              <option value="Physical Count / Cycle Count">Physical Count / Cycle Count</option>
-              <option value="Replenishment Shipment Received">Replenishment Shipment Received</option>
-              <option value="Damaged / Write-off">Damaged / Write-off</option>
-              <option value="Inventory Transfer">Inventory Transfer</option>
-              <option value="Other Manual Adjustment">Other Manual Adjustment</option>
+
+            <label for="updateStockReason">
+              Adjustment Reason (Optional)
+            </label>
+
+            <select
+              id="updateStockReason"
+              class="form-input"
+            >
+
+              <option value="Physical Count / Cycle Count">
+                Physical Count / Cycle Count
+              </option>
+
+              <option value="Replenishment Shipment Received">
+                Replenishment Shipment Received
+              </option>
+
+              <option value="Damaged / Write-off">
+                Damaged / Write-off
+              </option>
+
+              <option value="Inventory Transfer">
+                Inventory Transfer
+              </option>
+
+              <option value="Other Manual Adjustment">
+                Other Manual Adjustment
+              </option>
+
             </select>
+
           </div>
+
         </div>
 
         <div class="modal-footer">
-          <button type="button" class="btn-secondary" onclick="closeUpdateStockModal()">Cancel</button>
-          <button type="submit" class="btn-primary" id="saveStockBtn">
+
+          <button
+            type="button"
+            class="btn-secondary"
+            onclick="closeUpdateStockModal()"
+          >
+            Cancel
+          </button>
+
+          <button
+            type="submit"
+            class="btn-primary"
+            id="saveStockBtn"
+          >
+
             <span class="btn-icon">⚡</span>
             <span>Update Stock</span>
+
           </button>
+
         </div>
+
       </form>
+
     </div>
+
   </div>
 
   <!-- ======================================================== -->
   <!-- MODAL: EDIT PRODUCT DETAILS                              -->
   <!-- ======================================================== -->
-  <div class="modal-overlay" id="editProductModal" style="display: none;">
-    <div class="modal-backdrop" onclick="closeEditProductModal()"></div>
+
+  <div
+    class="modal-overlay"
+    id="editProductModal"
+    style="display: none;"
+  >
+
+    <div
+      class="modal-backdrop"
+      onclick="closeEditProductModal()"
+    ></div>
+
     <div class="modal-card">
+
       <div class="modal-header">
+
         <div class="modal-title-wrap">
-          <div class="modal-icon-badge">✏️</div>
-          <div>
-            <h3 class="modal-title">Edit Product Details</h3>
-            <p class="modal-subtitle">Modify SKU catalog parameters and operational thresholds</p>
+
+          <div class="modal-icon-badge">
+            ✏️
           </div>
+
+          <div>
+
+            <h3 class="modal-title">
+              Edit Product Details
+            </h3>
+
+            <p class="modal-subtitle">
+              Modify SKU catalog parameters and operational thresholds
+            </p>
+
+          </div>
+
         </div>
-        <button class="modal-close-btn" onclick="closeEditProductModal()" title="Close">✕</button>
+
+        <button
+          class="modal-close-btn"
+          onclick="closeEditProductModal()"
+          title="Close"
+        >
+          ✕
+        </button>
+
       </div>
-      
-      <form id="editProductForm" onsubmit="handleProductEditSubmit(event)">
-        <input type="hidden" id="editProductId">
+
+      <form
+        id="editProductForm"
+        onsubmit="handleProductEditSubmit(event)"
+      >
+
+        <input
+          type="hidden"
+          id="editProductId"
+        >
+
         <div class="modal-body">
+
           <div class="form-grid">
+
             <div class="form-group">
-              <label>Product ID</label>
-              <input type="text" id="editProductIdDisplay" class="form-input read-only-input" readonly>
+
+              <label>
+                Product ID
+              </label>
+
+              <input
+                type="text"
+                id="editProductIdDisplay"
+                class="form-input read-only-input"
+                readonly
+              >
+
             </div>
+
             <div class="form-group">
-              <label for="editProductName">Product Name *</label>
-              <input type="text" id="editProductName" class="form-input" required>
+
+              <label for="editProductName">
+                Product Name *
+              </label>
+
+              <input
+                type="text"
+                id="editProductName"
+                class="form-input"
+                required
+              >
+
             </div>
+
           </div>
 
           <div class="form-grid">
+
             <div class="form-group">
-              <label for="editProductCategory">Category *</label>
-              <select id="editProductCategory" class="form-input" required>
-                <option value="Electronics">Electronics</option>
-                <option value="Accessories">Accessories</option>
-                <option value="Audio">Audio</option>
-                <option value="Wearables">Wearables</option>
-                <option value="Home & Office">Home & Office</option>
+
+              <label for="editProductCategory">
+                Category *
+              </label>
+
+              <select
+                id="editProductCategory"
+                class="form-input"
+                required
+              >
+
+                <option value="Electronics">
+                  Electronics
+                </option>
+
+                <option value="Accessories">
+                  Accessories
+                </option>
+
+                <option value="Audio">
+                  Audio
+                </option>
+
+                <option value="Wearables">
+                  Wearables
+                </option>
+
+                <option value="Home & Office">
+                  Home & Office
+                </option>
+
               </select>
+
             </div>
+
             <div class="form-group">
-              <label for="editProductPrice">Selling Price ($) *</label>
-              <input type="number" id="editProductPrice" class="form-input" step="0.01" min="0.01" required>
+
+              <label for="editProductPrice">
+                Selling Price ($) *
+              </label>
+
+              <input
+                type="number"
+                id="editProductPrice"
+                class="form-input"
+                step="0.01"
+                min="0.01"
+                required
+              >
+
             </div>
+
           </div>
 
           <div class="form-grid three-col">
+
             <div class="form-group">
-              <label for="editProductReorder">Reorder Level</label>
-              <input type="number" id="editProductReorder" class="form-input" min="0" step="1" required>
+
+              <label for="editProductReorder">
+                Reorder Level
+              </label>
+
+              <input
+                type="number"
+                id="editProductReorder"
+                class="form-input"
+                min="0"
+                step="1"
+                required
+              >
+
             </div>
+
             <div class="form-group">
-              <label for="editProductSafety">Safety Stock</label>
-              <input type="number" id="editProductSafety" class="form-input" min="0" step="1" required>
+
+              <label for="editProductSafety">
+                Safety Stock
+              </label>
+
+              <input
+                type="number"
+                id="editProductSafety"
+                class="form-input"
+                min="0"
+                step="1"
+                required
+              >
+
             </div>
+
             <div class="form-group">
-              <label for="editProductLeadTime">Lead Time (Days)</label>
-              <input type="number" id="editProductLeadTime" class="form-input" min="1" step="1" required>
+
+              <label for="editProductLeadTime">
+                Lead Time (Days)
+              </label>
+
+              <input
+                type="number"
+                id="editProductLeadTime"
+                class="form-input"
+                min="1"
+                step="1"
+                required
+              >
+
             </div>
+
           </div>
+
         </div>
 
         <div class="modal-footer">
-          <button type="button" class="btn-secondary" onclick="closeEditProductModal()">Cancel</button>
-          <button type="submit" class="btn-primary" id="saveEditProductBtn">
+
+          <button
+            type="button"
+            class="btn-secondary"
+            onclick="closeEditProductModal()"
+          >
+            Cancel
+          </button>
+
+          <button
+            type="submit"
+            class="btn-primary"
+            id="saveEditProductBtn"
+          >
+
             <span class="btn-icon">💾</span>
             <span>Save Changes</span>
+
           </button>
+
         </div>
+
       </form>
+
     </div>
+
   </div>
 
   <!-- Toast Notification Container -->
-  <div class="toast-container" id="toastContainer"></div>
+
+  <div
+    class="toast-container"
+    id="toastContainer"
+  ></div>
+
+  <!-- Application JavaScript -->
 
   <script src="/static/js/app.js"></script>
+
 </body>
 </html>
